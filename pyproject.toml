@@ -1,0 +1,57 @@
+[tool.poetry]
+name = "transmission-media-manager"
+version = "0.1.0"
+description = "Telegram bot for managing your media library using the transmission torrent client"
+authors = ["Raidzin <agonch2001@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pytelegrambotapi = "^4.20.0"
+transmission-rpc = "^7.0.10"
+pydantic = "^2.7.4"
+pydantic-settings = "^2.3.4"
+
+[tool.poetry.group.test.dependencies]
+ruff = "^0.5.0"
+mypy = "^1.10.1"
+
+[tool.ruff]
+include = ["transmission_media_manager/**/*.py"]
+line-length = 79
+target-version = "py311"
+
+[tool.ruff.lint]
+select = [
+    "E", # pycodestyle errors
+    "W", # pycodestyle warnings
+    "N", # pep8-naming
+    "F", # pyflakes
+    "I", # isort
+    "B", # flake8-bugbear
+    "C4", # flake8-comprehensions
+    "COM", # flake8-commas
+    "UP", # pyupgrade
+    "PT", # flake8-pytest-style
+]
+preview = true
+
+[tool.mypy]
+packages = ['transmission_media_manager']
+check_untyped_defs = true
+plugins = [
+    "pydantic.mypy",
+]
+
+
+[tool.ruff.format]
+quote-style = 'single'
+indent-style = 'space'
+
+[tool.poetry.scripts]
+start = "transmission_media_manager.main:main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
